@@ -1,18 +1,51 @@
-// app/_layout.tsx
+// app/_layout.tsx - Updated with fixes
 import { TermsAndConditionsScreen } from "@/component/ui/TermsAndConditionsScreen";
 import { useAudio } from "@/hooks/useAudio";
 import { useCamera } from "@/hooks/useCamera";
 import { useGeofence as useLocation } from "@/hooks/useGeofence";
 import { NotificationProvider } from "@/provider/NotificationProvider";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { router, Stack, useRootNavigationState, useSegments } from "expo-router";
+import {
+  router,
+  Stack,
+  useRootNavigationState,
+  useSegments,
+} from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
-import { Alert, AppState } from "react-native";
+import {
+  Alert,
+  AppState,
+  Text,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 import { useAuthStore } from "../store/authStore";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+
+// Global configuration for Text and TextInput
+// This helps maintain consistency across the app
+(Text as any).defaultProps = (Text as any).defaultProps || {};
+(Text as any).defaultProps.allowFontScaling = true; // Allow font scaling
+(Text as any).defaultProps.maxFontSizeMultiplier = 1.3; // Limit maximum scaling to 130%
+
+(TextInput as any).defaultProps = (TextInput as any).defaultProps || {};
+(TextInput as any).defaultProps.allowFontScaling = true;
+(TextInput as any).defaultProps.maxFontSizeMultiplier = 1.3;
+
+// Set default touch opacity for better touch feedback
+(TouchableOpacity as any).defaultProps =
+  (TouchableOpacity as any).defaultProps || {};
+(TouchableOpacity as any).defaultProps.activeOpacity = 0.7;
 
 function AuthGate({ children }: { children: React.ReactNode }) {
-  const { session, isLoading, isInitialized, initializeAuth, checkTokenExpiry } = useAuthStore();
+  const {
+    session,
+    isLoading,
+    isInitialized,
+    initializeAuth,
+    checkTokenExpiry,
+  } = useAuthStore();
   const segments = useSegments();
   const navigationState = useRootNavigationState();
 
@@ -23,19 +56,22 @@ function AuthGate({ children }: { children: React.ReactNode }) {
   // Check token expiry on app state change (when app comes to foreground)
   useEffect(() => {
     const handleAppStateChange = (nextAppState: string) => {
-      if (nextAppState === 'active') {
+      if (nextAppState === "active") {
         // Check if token is still valid when app becomes active
         if (session && !checkTokenExpiry()) {
           Alert.alert(
-            'Session Expired',
-            'Your session has expired. Please login again.',
-            [{ text: 'OK', onPress: () => useAuthStore.getState().signOut() }]
+            "Session Expired",
+            "Your session has expired. Please login again.",
+            [{ text: "OK", onPress: () => useAuthStore.getState().signOut() }],
           );
         }
       }
     };
 
-    const subscription = AppState.addEventListener('change', handleAppStateChange);
+    const subscription = AppState.addEventListener(
+      "change",
+      handleAppStateChange,
+    );
     return () => subscription.remove();
   }, [session, checkTokenExpiry]);
 
@@ -46,9 +82,9 @@ function AuthGate({ children }: { children: React.ReactNode }) {
     const interval = setInterval(() => {
       if (!checkTokenExpiry()) {
         Alert.alert(
-          'Session Expired',
-          'Your session has expired. Please login again.',
-          [{ text: 'OK', onPress: () => useAuthStore.getState().signOut() }]
+          "Session Expired",
+          "Your session has expired. Please login again.",
+          [{ text: "OK", onPress: () => useAuthStore.getState().signOut() }],
         );
       }
     }, 60000); // Check every minute
@@ -72,7 +108,9 @@ function AuthGate({ children }: { children: React.ReactNode }) {
 }
 
 function TermsGate({ children }: { children: React.ReactNode }) {
-  const [hasAcceptedTerms, setHasAcceptedTerms] = useState<boolean | null>(null);
+  const [hasAcceptedTerms, setHasAcceptedTerms] = useState<boolean | null>(
+    null,
+  );
   const [processing, setProcessing] = useState(false);
   const { session } = useAuthStore();
 
@@ -84,10 +122,10 @@ function TermsGate({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const checkTermsAcceptance = async () => {
       try {
-        const accepted = await AsyncStorage.getItem('termsAcceptedOnce');
-        setHasAcceptedTerms(accepted === 'true');
+        const accepted = await AsyncStorage.getItem("termsAcceptedOnce");
+        setHasAcceptedTerms(accepted === "true");
       } catch (error) {
-        console.error('Error checking terms acceptance:', error);
+        console.error("Error checking terms acceptance:", error);
         setHasAcceptedTerms(false);
       }
     };
@@ -99,17 +137,13 @@ function TermsGate({ children }: { children: React.ReactNode }) {
     setProcessing(true);
     try {
       // Request all required permissions
-      await Promise.all([
-        requestCamera(),
-        requestMic(),
-        requestLocation(),
-      ]);
-      
+      await Promise.all([requestCamera(), requestMic(), requestLocation()]);
+
       // Mark terms as accepted permanently (survives app reinstalls only if not clearing app data)
-      await AsyncStorage.setItem('termsAcceptedOnce', 'true');
+      await AsyncStorage.setItem("termsAcceptedOnce", "true");
       setHasAcceptedTerms(true);
     } catch (error) {
-      console.error('Error accepting terms:', error);
+      console.error("Error accepting terms:", error);
     } finally {
       setProcessing(false);
     }
@@ -135,17 +169,26 @@ function TermsGate({ children }: { children: React.ReactNode }) {
 
 export default function RootLayout() {
   return (
-    <AuthGate>
-      <TermsGate>
-        <NotificationProvider>
-          <Stack>
-            <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="+not-found" />
-          </Stack>
-          <StatusBar style="auto" />
-        </NotificationProvider>
-      </TermsGate>
-    </AuthGate>
+    // GestureHandlerRootView is essential for proper touch handling
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <AuthGate>
+        <TermsGate>
+          <NotificationProvider>
+            <Stack
+              screenOptions={{
+                // Ensure animations don't interfere with touch events
+                animation: "simple_push",
+                animationDuration: 200,
+              }}
+            >
+              <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen name="+not-found" />
+            </Stack>
+            <StatusBar style="auto" />
+          </NotificationProvider>
+        </TermsGate>
+      </AuthGate>
+    </GestureHandlerRootView>
   );
 }

@@ -5,7 +5,6 @@ import { Image } from "expo-image";
 import React, { useState } from "react";
 import {
   Alert,
-  Dimensions,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
@@ -16,14 +15,22 @@ import {
   View,
 } from "react-native";
 import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
-
-const { width } = Dimensions.get("window");
+import {
+  fontSize,
+  horizontalScale,
+  verticalScale,
+  moderateScale,
+  adaptiveHeight,
+  adaptivePadding,
+  getResponsiveStyles,
+} from "@/utils/responsive";
 
 export default function LoginScreen() {
   const { signIn, isLoading } = useAuthStore();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const responsiveInfo = getResponsiveStyles();
 
   const handleLogin = async () => {
     if (!username.trim() || !password.trim()) {
@@ -42,6 +49,7 @@ export default function LoginScreen() {
         <ScrollView
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
         >
           {/* Logo/Brand Section */}
           <Animated.View
@@ -55,7 +63,13 @@ export default function LoginScreen() {
                 contentFit="cover"
               />
             </View>
-            <Text style={styles.brandName}>Attendance System</Text>
+            <Text
+              style={styles.brandName}
+              numberOfLines={responsiveInfo.shouldWrapText ? 2 : 1}
+              adjustsFontSizeToFit={!responsiveInfo.shouldWrapText}
+            >
+              Attendance System
+            </Text>
             <Text style={styles.tagline}>IIT Guwahati</Text>
           </Animated.View>
 
@@ -64,14 +78,16 @@ export default function LoginScreen() {
             entering={FadeInUp.delay(200).springify()}
             style={styles.formCard}
           >
-            <Text style={styles.welcomeText}>Welcome Back!</Text>
+            <Text style={styles.welcomeText} allowFontScaling={true}>
+              Welcome Back!
+            </Text>
             <Text style={styles.subtitleText}>Sign in to continue</Text>
 
             {/* Username Input */}
             <View style={styles.inputContainer}>
               <FontAwesome6
                 name="user"
-                size={20}
+                size={moderateScale(20)}
                 color={"#000"}
                 style={styles.inputIcon}
               />
@@ -83,6 +99,7 @@ export default function LoginScreen() {
                 onChangeText={setUsername}
                 autoCapitalize="none"
                 autoCorrect={false}
+                allowFontScaling={true}
               />
             </View>
 
@@ -90,7 +107,7 @@ export default function LoginScreen() {
             <View style={styles.inputContainer}>
               <FontAwesome6
                 name="lock"
-                size={20}
+                size={moderateScale(20)}
                 color={"#000"}
                 style={styles.inputIcon}
               />
@@ -101,14 +118,16 @@ export default function LoginScreen() {
                 value={password}
                 onChangeText={setPassword}
                 secureTextEntry={!showPassword}
+                allowFontScaling={true}
               />
               <TouchableOpacity
                 onPress={() => setShowPassword(!showPassword)}
                 style={styles.eyeIcon}
+                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
               >
                 <FontAwesome6
                   name={showPassword ? "eye" : "eye-slash"}
-                  size={20}
+                  size={moderateScale(20)}
                   color={"#000"}
                 />
               </TouchableOpacity>
@@ -121,7 +140,7 @@ export default function LoginScreen() {
               disabled={isLoading}
               activeOpacity={0.7}
             >
-              <Text style={styles.loginButtonText}>
+              <Text style={styles.loginButtonText} allowFontScaling={true}>
                 {isLoading ? "Signing in..." : "Sign In"}
               </Text>
             </TouchableOpacity>
@@ -142,102 +161,111 @@ const styles = StyleSheet.create({
   scrollContent: {
     flexGrow: 1,
     justifyContent: "center",
-    padding: 20,
+    padding: moderateScale(20),
   },
   logoContainer: {
     alignItems: "center",
-    marginBottom: 30,
+    marginBottom: verticalScale(30),
   },
   logoCircle: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
+    width: moderateScale(100),
+    height: moderateScale(100),
+    borderRadius: moderateScale(50),
     backgroundColor: colors.white,
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 16,
+    marginBottom: verticalScale(16),
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
+    shadowOffset: { width: 0, height: verticalScale(4) },
     shadowOpacity: 0.2,
     shadowRadius: 8,
     elevation: 8,
   },
   brandName: {
-    fontSize: 32,
+    fontSize: fontSize(32),
     fontWeight: "bold",
     color: colors.black,
-    marginBottom: 4,
+    marginBottom: verticalScale(4),
+    textAlign: "center",
   },
   tagline: {
-    fontSize: 16,
+    fontSize: fontSize(16),
     color: colors.gray[500],
   },
-
   formCard: {
     backgroundColor: "#fff",
     borderWidth: 4,
     borderColor: "#000",
-    padding: 24,
-    marginHorizontal: 10,
+    padding: adaptivePadding(24),
+    marginHorizontal: horizontalScale(10),
     shadowColor: "#000",
-    shadowOffset: { width: 10, height: 10 },
+    shadowOffset: {
+      width: horizontalScale(10),
+      height: verticalScale(10),
+    },
     shadowOpacity: 1,
     shadowRadius: 0,
     elevation: 8,
+    minHeight: adaptiveHeight(280),
   },
   welcomeText: {
-    fontSize: 24,
+    fontSize: fontSize(24),
     fontWeight: "900",
     color: "#000",
     textTransform: "uppercase",
-    marginBottom: 8,
+    marginBottom: verticalScale(8),
   },
   subtitleText: {
-    fontSize: 14,
+    fontSize: fontSize(14),
     color: "#000",
     fontWeight: "600",
-    marginBottom: 24,
+    marginBottom: verticalScale(24),
   },
-
   inputContainer: {
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#fff",
     borderWidth: 3,
     borderColor: "#000",
-    marginBottom: 16,
-    paddingHorizontal: 12,
-    height: 56,
+    marginBottom: verticalScale(16),
+    paddingHorizontal: horizontalScale(12),
+    height: adaptiveHeight(56),
+    minHeight: adaptiveHeight(56),
   },
   inputIcon: {
-    marginRight: 12,
+    marginRight: horizontalScale(12),
   },
   input: {
     flex: 1,
-    fontSize: 16,
+    fontSize: fontSize(16),
     fontWeight: "600",
     color: "#000",
+    paddingVertical: adaptivePadding(8),
   },
   eyeIcon: {
-    padding: 4,
+    padding: moderateScale(4),
   },
-
   loginButton: {
-    marginTop: 12,
-    paddingVertical: 16,
+    marginTop: verticalScale(12),
+    paddingVertical: adaptivePadding(16),
     alignItems: "center",
     borderWidth: 3,
     borderColor: "#000",
     backgroundColor: "#dcfd00",
     shadowColor: "#000",
-    shadowOffset: { width: 5, height: 5 },
+    shadowOffset: {
+      width: horizontalScale(5),
+      height: verticalScale(5),
+    },
     shadowOpacity: 1,
     shadowRadius: 0,
     elevation: 6,
+    minHeight: adaptiveHeight(56),
+    justifyContent: "center",
   },
   loginButtonText: {
     color: "#000",
-    fontSize: 16,
+    fontSize: fontSize(16),
     fontWeight: "900",
     textTransform: "uppercase",
   },

@@ -8,7 +8,9 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "clean": "watchman watch-del-all && rm -rf node_modules && npm install && npx pod-install",
+    "reset-cache": "expo start -c"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.2",
