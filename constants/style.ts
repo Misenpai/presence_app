@@ -1,7 +1,7 @@
 import { Dimensions, Platform, StatusBar, StyleSheet } from "react-native";
 import { brutalistColors, colors } from "./colors";
 
-const { width: screenWidth } = Dimensions.get('window');
+const { width: screenWidth } = Dimensions.get("window");
 const MAX_WAVEFORM_WIDTH = screenWidth - 60;
 
 export const globalStyles = StyleSheet.create({
@@ -88,7 +88,6 @@ export const photoGridStyles = StyleSheet.create({
 });
 
 export const audioStyles = StyleSheet.create({
-  
   preview: {
     width: "100%",
     borderWidth: 4,
@@ -174,7 +173,7 @@ export const cameraStyles = StyleSheet.create({
     paddingHorizontal: 30,
   },
   controlSpacer: {
-    display: 'none',
+    display: "none",
   },
   shutterBtn: {
     alignItems: "center",
@@ -393,34 +392,33 @@ export const loadingStyles = StyleSheet.create({
 });
 
 export const mapCardStyles = StyleSheet.create({
-  
   container: {
     margin: 20,
     marginBottom: 10,
-    borderWidth: 2,           
-    borderColor: "#000",      
-    backgroundColor: "#fff",  
+    borderWidth: 2,
+    borderColor: "#000",
+    backgroundColor: "#fff",
     shadowColor: "#000",
-    shadowOffset: { width: 6, height: 6 }, 
+    shadowOffset: { width: 6, height: 6 },
     shadowOpacity: 0,
     shadowRadius: 0,
     elevation: 8,
-    overflow: 'hidden',
+    overflow: "hidden",
   },
 
   mapContainer: {
     height: 300,
     position: "relative",
-    borderBottomWidth: 2,     
+    borderBottomWidth: 2,
     borderColor: "#000",
-    overflow: 'hidden',
+    overflow: "hidden",
   },
 
   expandButton: {
     position: "absolute",
     bottom: 10,
     left: 10,
-    backgroundColor: "#000",  
+    backgroundColor: "#000",
     padding: 8,
     width: 40,
     height: 40,
@@ -435,7 +433,7 @@ export const mapCardStyles = StyleSheet.create({
     position: "absolute",
     bottom: 12,
     right: 12,
-    backgroundColor: "#fff",  
+    backgroundColor: "#fff",
     padding: 10,
     width: 44,
     height: 44,
@@ -451,19 +449,18 @@ export const mapCardStyles = StyleSheet.create({
   },
 });
 
-
 export const expandedMapStyles = StyleSheet.create({
-    recenterButton: {
-    position: 'absolute',
+  recenterButton: {
+    position: "absolute",
     bottom: 40,
     right: 20,
-    backgroundColor: 'rgba(0, 122, 255, 0.9)',
+    backgroundColor: "rgba(0, 122, 255, 0.9)",
     padding: 12,
     borderRadius: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     zIndex: 10,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 4,
@@ -563,41 +560,41 @@ export const attendanceContainerStyles = StyleSheet.create({
   contentContainer: {
     paddingBottom: 20,
   },
-  
+
   fieldTripContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 20,
   },
   fieldTripGradient: {
-    width: '100%',
+    width: "100%",
     padding: 30,
     borderRadius: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     minHeight: 300,
   },
   fieldTripTitle: {
     fontSize: 28,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: colors.white,
     marginTop: 20,
     marginBottom: 12,
-    textAlign: 'center',
+    textAlign: "center",
   },
   fieldTripText: {
     fontSize: 16,
     color: colors.white,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 30,
     opacity: 0.9,
     lineHeight: 24,
   },
   fieldTripInfo: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
     paddingHorizontal: 20,
     paddingVertical: 12,
     borderRadius: 25,
@@ -605,7 +602,7 @@ export const attendanceContainerStyles = StyleSheet.create({
   },
   fieldTripDate: {
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
     color: colors.white,
   },
 });
@@ -676,7 +673,6 @@ export const attendanceContainerStyles = StyleSheet.create({
 //   },
 // };
 
-
 export const actionButtonStyles = StyleSheet.create({
   container: {
     gap: 16,
@@ -684,7 +680,7 @@ export const actionButtonStyles = StyleSheet.create({
   },
   buttonGroup: {
     gap: 16,
-    alignItems: 'stretch',
+    alignItems: "stretch",
   },
   primaryButton: {
     borderWidth: 4,
@@ -695,7 +691,7 @@ export const actionButtonStyles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 0,
     elevation: 6,
-    alignSelf: 'stretch',
+    alignSelf: "stretch",
   },
   brutalistButton: {
     flexDirection: "row",
@@ -732,7 +728,7 @@ export const actionButtonStyles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 0,
     elevation: 6,
-    alignSelf: 'stretch',
+    alignSelf: "stretch",
   },
   secondaryButtonText: {
     color: colors.black,
@@ -743,7 +739,7 @@ export const actionButtonStyles = StyleSheet.create({
   buttonDisabled: {
     opacity: 0.6,
   },
-})
+});
 
 export const audioSectionStyles = StyleSheet.create({
   container: {
@@ -1285,7 +1281,7 @@ export const attendancePhotoGridStyles = StyleSheet.create({
     width: "100%",
     maxWidth: 250,
     position: "relative",
-    alignSelf: 'center',
+    alignSelf: "center",
   },
   photoWrapper: {
     position: "relative",
@@ -1572,10 +1568,10 @@ export const cameraViewStyles = StyleSheet.create({
 export const photoPreviewModalStyles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.9)',
-    paddingTop: Platform.OS === 'ios' ? 50 : StatusBar.currentHeight || 30,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.9)",
+    paddingTop: Platform.OS === "ios" ? 50 : StatusBar.currentHeight || 30,
   },
   content: {
     width: screenWidth - 40,
@@ -1583,18 +1579,18 @@ export const photoPreviewModalStyles = StyleSheet.create({
     backgroundColor: colors.white,
     borderRadius: 24,
     padding: 20,
-    alignItems: 'center',
-    shadowColor: '#000',
+    alignItems: "center",
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.3,
     shadowRadius: 20,
     elevation: 20,
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
     marginBottom: 20,
   },
   photoNumberBadge: {
@@ -1606,11 +1602,11 @@ export const photoPreviewModalStyles = StyleSheet.create({
   photoNumberText: {
     color: colors.primary[700],
     fontSize: 14,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   positionBadge: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 6,
     backgroundColor: colors.primary[500],
     paddingHorizontal: 12,
@@ -1620,31 +1616,31 @@ export const photoPreviewModalStyles = StyleSheet.create({
   positionText: {
     color: colors.white,
     fontSize: 14,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   photoContainer: {
-    width: '100%',
-    aspectRatio: 3/4,
+    width: "100%",
+    aspectRatio: 3 / 4,
     borderRadius: 16,
-    overflow: 'hidden',
+    overflow: "hidden",
     backgroundColor: colors.gray[100],
     marginBottom: 20,
-    position: 'relative',
+    position: "relative",
   },
   photo: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
   },
   photoFrame: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    pointerEvents: 'none',
+    pointerEvents: "none",
   },
   frameCorner: {
-    position: 'absolute',
+    position: "absolute",
     width: 30,
     height: 30,
     borderColor: colors.primary[400],
@@ -1679,13 +1675,13 @@ export const photoPreviewModalStyles = StyleSheet.create({
     borderBottomRightRadius: 8,
   },
   reviewSection: {
-    width: '100%',
-    alignItems: 'center',
+    width: "100%",
+    alignItems: "center",
     marginBottom: 24,
   },
   reviewTitle: {
     fontSize: 18,
-    fontWeight: '600',
+    fontWeight: "600",
     color: colors.gray[800],
     marginBottom: 4,
   },
@@ -1694,22 +1690,22 @@ export const photoPreviewModalStyles = StyleSheet.create({
     color: colors.gray[500],
   },
   actions: {
-    flexDirection: 'row',
+    flexDirection: "row",
     gap: 12,
-    width: '100%',
+    width: "100%",
   },
   button: {
     flex: 1,
     borderRadius: 14,
-    overflow: 'hidden',
+    overflow: "hidden",
   },
   retakeButton: {
-    backgroundColor: colors.error + '10',
+    backgroundColor: colors.error + "10",
     borderWidth: 2,
     borderColor: colors.error,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     gap: 8,
     paddingVertical: 14,
   },
@@ -1717,21 +1713,21 @@ export const photoPreviewModalStyles = StyleSheet.create({
     flex: 1.5,
   },
   gradientButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     gap: 8,
     paddingVertical: 16,
   },
   retakeButtonText: {
     color: colors.error,
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   keepButtonText: {
     color: colors.white,
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
   },
 });
 
@@ -1789,11 +1785,14 @@ export const attendanceCalendarStyles = StyleSheet.create({
   simpleStatsGrid: {
     flexDirection: "row",
     justifyContent: "space-around",
-    alignItems: "center",
+    alignItems: "flex-start",
+    flexWrap: "wrap",
   },
   simpleStatItem: {
     alignItems: "center",
     paddingHorizontal: 8,
+    minWidth: "45%",
+    marginBottom: 16,
   },
   simpleStatValue: {
     fontSize: 28,
@@ -1925,7 +1924,6 @@ export const avatarDisplayStyles = StyleSheet.create({
   webview: {
     flex: 1,
     backgroundColor: "transparent",
-    
   },
   loadingContainer: {
     position: "absolute",
@@ -2062,23 +2060,23 @@ export const logoutButtonStyles = StyleSheet.create({
     marginBottom: 40,
     paddingVertical: 16,
     paddingHorizontal: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     borderWidth: 3,
-    borderColor: '#000',
-    backgroundColor: '#ef4444',
-    shadowColor: '#000',
+    borderColor: "#000",
+    backgroundColor: "#ef4444",
+    shadowColor: "#000",
     shadowOffset: { width: 5, height: 5 },
     shadowOpacity: 1,
     shadowRadius: 0,
     elevation: 6,
   },
   logoutButtonText: {
-    color: '#000',
+    color: "#000",
     fontSize: 16,
-    fontWeight: '900',
-    textTransform: 'uppercase',
+    fontWeight: "900",
+    textTransform: "uppercase",
     marginLeft: 10,
   },
   disabled: {
@@ -2095,78 +2093,78 @@ export const profileContainerStyles = StyleSheet.create({
     padding: 20,
   },
   avatarSection: {
-    alignItems: 'center',
+    alignItems: "center",
     marginBottom: 30,
     paddingVertical: 20,
     paddingHorizontal: 10,
     borderBottomWidth: 3,
-    borderColor: '#000',
+    borderColor: "#000",
   },
   avatarContainer: {
     borderWidth: 2,
-    borderColor: '#000',
-    backgroundColor: '#fff',
-    shadowColor: '#000',
+    borderColor: "#000",
+    backgroundColor: "#fff",
+    shadowColor: "#000",
     shadowOffset: { width: 4, height: 4 },
     shadowOpacity: 1,
     shadowRadius: 2,
     elevation: 2,
-    position: 'relative',
+    position: "relative",
   },
   avatar: {
     width: 100,
     height: 100,
-    backgroundColor: '#000',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "#000",
+    justifyContent: "center",
+    alignItems: "center",
   },
   avatarText: {
     fontSize: 32,
-    fontWeight: '900',
-    color: '#fff',
+    fontWeight: "900",
+    color: "#fff",
   },
   editOverlay: {
-    position: 'absolute',
+    position: "absolute",
     bottom: -6,
     right: -6,
     width: 28,
     height: 28,
-    backgroundColor: '#000',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#000",
+    alignItems: "center",
+    justifyContent: "center",
     borderWidth: 2,
-    borderColor: '#fff',
+    borderColor: "#fff",
   },
   usernameText: {
     marginTop: 12,
     fontSize: 22,
-    fontWeight: '900',
-    color: '#000',
-    textTransform: 'uppercase',
-    textAlign: 'center',
-    flexWrap: 'wrap',
-    maxWidth: '90%',
+    fontWeight: "900",
+    color: "#000",
+    textTransform: "uppercase",
+    textAlign: "center",
+    flexWrap: "wrap",
+    maxWidth: "90%",
   },
   attendanceCard: {
     borderWidth: 3,
-    borderColor: '#000',
-    backgroundColor: '#fff',
+    borderColor: "#000",
+    backgroundColor: "#fff",
     padding: 16,
     marginBottom: 20,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 5, height: 5 },
     shadowOpacity: 1,
     shadowRadius: 0,
     elevation: 5,
   },
   attendanceCardHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   attendanceCardLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     flex: 1,
   },
   attendanceCardTextContainer: {
@@ -2175,14 +2173,14 @@ export const profileContainerStyles = StyleSheet.create({
   },
   attendanceCardTitle: {
     fontSize: 16,
-    fontWeight: '900',
-    color: '#000',
+    fontWeight: "900",
+    color: "#000",
     marginBottom: 4,
   },
   attendanceCardSubtitle: {
     fontSize: 12,
-    color: '#000',
-    fontWeight: '600',
+    color: "#000",
+    fontWeight: "600",
   },
   calendarSection: {
     marginTop: -10,
@@ -2190,11 +2188,11 @@ export const profileContainerStyles = StyleSheet.create({
   },
   card: {
     borderWidth: 3,
-    borderColor: '#000',
-    backgroundColor: '#fff',
+    borderColor: "#000",
+    backgroundColor: "#fff",
     padding: 16,
     marginBottom: 20,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 5, height: 5 },
     shadowOpacity: 1,
     shadowRadius: 0,
@@ -2202,42 +2200,42 @@ export const profileContainerStyles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 16,
-    fontWeight: '900',
-    color: '#000',
+    fontWeight: "900",
+    color: "#000",
     marginBottom: 12,
-    textTransform: 'uppercase',
+    textTransform: "uppercase",
   },
   projectsSection: {
     marginTop: 12,
     paddingTop: 12,
     borderTopWidth: 2,
-    borderTopColor: '#000',
+    borderTopColor: "#000",
   },
   projectsLabel: {
     fontSize: 12,
-    fontWeight: '900',
-    color: '#000',
+    fontWeight: "900",
+    color: "#000",
     marginBottom: 8,
   },
   projectItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 6,
     paddingVertical: 6,
     paddingHorizontal: 10,
     borderWidth: 2,
-    borderColor: '#000',
-    backgroundColor: '#fff',
+    borderColor: "#000",
+    backgroundColor: "#fff",
     marginBottom: 6,
   },
   projectText: {
     fontSize: 12,
-    color: '#000',
-    fontWeight: '700',
+    color: "#000",
+    fontWeight: "700",
   },
   text: {
     marginTop: 10,
-    alignItems: 'center',
+    alignItems: "center",
   },
 });
 
@@ -2257,7 +2255,7 @@ export const profileFieldProfileStyles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "black",
     padding: 16,
-    overflow: 'hidden',
+    overflow: "hidden",
   },
   inputContent: {
     flexDirection: "row",
@@ -2271,7 +2269,7 @@ export const profileFieldProfileStyles = StyleSheet.create({
     color: "black",
     fontWeight: "600",
     flex: 1,
-    flexWrap: 'wrap',
+    flexWrap: "wrap",
   },
 });
 
