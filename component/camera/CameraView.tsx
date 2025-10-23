@@ -102,7 +102,7 @@ export function CameraView({
       <View style={cameraViewStyles.previewContainer}>
         {/* Preview Header */}
         <View style={cameraViewStyles.previewHeader}>
-          <Text style={cameraViewStyles.previewTitle}>Review Your Photo</Text>
+          <Text style={cameraViewStyles.previewTitle}>REVIEW YOUR PHOTO</Text>
           <Text style={cameraViewStyles.previewSubtitle}>
             Make sure your face is clearly visible
           </Text>
@@ -121,15 +121,15 @@ export function CameraView({
             <FontAwesome6
               name="user"
               size={16}
-              color={colors.white}
+              color={colors.black}
             />
-            <Text style={cameraViewStyles.positionBadgeText}>Front Face</Text>
+            <Text style={cameraViewStyles.positionBadgeText}>FRONT FACE</Text>
           </View>
 
           {/* Photo Info */}
           <View style={cameraViewStyles.photoInfo}>
             <Text style={cameraViewStyles.photoInfoText}>
-              Photo {currentPhotoIndex + 1} of {totalPhotos}
+              PHOTO {currentPhotoIndex + 1} OF {totalPhotos}
             </Text>
           </View>
         </View>
@@ -150,13 +150,13 @@ export function CameraView({
         {/* Action Buttons */}
         <View style={cameraViewStyles.previewActions}>
           <Pressable style={cameraViewStyles.retakeButton} onPress={handleRetake}>
-            <FontAwesome6 name="camera-rotate" size={20} color={colors.error} />
-            <Text style={cameraViewStyles.retakeButtonText}>Retake</Text>
+            <FontAwesome6 name="camera-rotate" size={20} color={colors.black} />
+            <Text style={cameraViewStyles.retakeButtonText}>RETAKE</Text>
           </Pressable>
 
           <Pressable style={cameraViewStyles.usePhotoButton} onPress={handleKeep}>
-            <FontAwesome6 name="check" size={20} color={colors.white} />
-            <Text style={cameraViewStyles.usePhotoButtonText}>Use This Photo</Text>
+            <FontAwesome6 name="check" size={20} color={colors.black} />
+            <Text style={cameraViewStyles.usePhotoButtonText}>USE THIS PHOTO</Text>
           </Pressable>
         </View>
       </View>
