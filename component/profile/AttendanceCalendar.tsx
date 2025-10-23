@@ -821,30 +821,29 @@ const getMarkedDates = (
     let backgroundColor = "#F87171";
     let textColor = "#1F2937";
 
-    if (item.present === 1) {
-      if (item.attendance) {
-        const isAutoCompleted =
-          dateStr === today && currentHour >= 23 && !item.attendance.isCheckout;
+if (item.present === 1) {
+  if (item.attendance) {
+    const isAutoCompleted =
+      dateStr === today && currentHour >= 23 && !item.attendance.isCheckout;
 
-        if (isAutoCompleted || item.attendance.fullDay) {
-          dotColor = "#10B981";
-          backgroundColor = "#D1FAE5";
-          textColor = "#065F46";
-        } else if (!item.attendance.isCheckout) {
-          dotColor = "#F59E0B";
-          backgroundColor = "#FEF3C7";
-          textColor = "#92400E";
-        } else if (item.attendance.halfDay) {
-          dotColor = "#6B7280";
-          backgroundColor = "#F3F4F6";
-          textColor = "#1F2937";
-        } else {
-          dotColor = "#10B981";
-          backgroundColor = "#D1FAE5";
-          textColor = "#065F46";
-        }
-      }
+    if (isAutoCompleted || item.attendance.isCheckout) {  // ✅ FIXED
+      // Show green for ALL checked-out attendance (both full-day and half-day)
+      dotColor = "#10B981";
+      backgroundColor = "#D1FAE5";
+      textColor = "#065F46";
+    } else if (!item.attendance.isCheckout) {
+      // Show yellow for in-progress attendance
+      dotColor = "#F59E0B";
+      backgroundColor = "#FEF3C7";
+      textColor = "#92400E";
+    } else {
+      // Default green color
+      dotColor = "#10B981";
+      backgroundColor = "#D1FAE5";
+      textColor = "#065F46";
     }
+  }
+}
 
     marked[dateStr] = {
       marked: true,

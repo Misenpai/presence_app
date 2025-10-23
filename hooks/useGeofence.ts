@@ -5,7 +5,6 @@ import {
 import { useAttendanceStore } from "@/store/attendanceStore";
 import { LatLng, MapLayer, MapMarker, MapShape } from "@/types/geofence";
 import { Asset } from "expo-asset";
-// Use legacy API to avoid deprecation warning
 import * as FileSystem from "expo-file-system/legacy";
 import * as Location from "expo-location";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -20,6 +19,9 @@ interface AttendanceCoordinates {
 }
 
 type AttendanceUpdateCallback = (coordinates: AttendanceCoordinates) => void;
+
+// Create a variable outside the hook to act as an in-memory cache
+let cachedHtml: string | null = null;
 
 export function useGeofence(
   userLocationType?: "CAMPUS" | "FIELDTRIP" | null,
@@ -282,10 +284,19 @@ export function useGeofence(
 
   useEffect(() => {
     const initializeHtml = async () => {
+      // If the HTML is already cached, use it immediately
+      if (cachedHtml) {
+        setHtml(cachedHtml);
+        return;
+      }
+      // If not cached, perform the slow file read operation once
       try {
         const asset = Asset.fromModule(require("../assets/leaflet.html"));
         await asset.downloadAsync();
         const htmlContent = await FileSystem.readAsStringAsync(asset.localUri!);
+        
+        // Store the content in our cache and set the state
+        cachedHtml = htmlContent;
         setHtml(htmlContent);
       } catch (e) {
         Alert.alert("HTML Load Error", (e as Error).message);

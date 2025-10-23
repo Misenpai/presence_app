@@ -1776,6 +1776,7 @@ export const attendanceCalendarStyles = StyleSheet.create({
     fontWeight: "900",
     color: brutalistColors.text,
     textTransform: "uppercase",
+    textAlign: "center",
   },
   refreshButton: {
     borderWidth: 2,

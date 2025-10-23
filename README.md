@@ -848,7 +848,7 @@ SOFTWARE.
 
 ### Development Team
 
-- **Your Name** - _Initial work_ - [YourGitHub](https://github.com/yourusername)
+- **Sumit Sinha** - [YourGitHub](https://github.com/Misenpai)
 
 ### Acknowledgments
 

@@ -1,4 +1,4 @@
-import { colors } from "@/constants/colors";
+import { brutalistColors } from "@/constants/colors";
 import { useAuthStore } from "@/store/authStore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
@@ -150,26 +150,35 @@ export const getMarkedDates = (
 
   attendanceDates.forEach((item) => {
     const dateStr = item.date.split("T")[0];
-    let dotColor = colors.error;
+    let dotColor = brutalistColors.absent;
     let backgroundColor = "#F87171";
     let textColor = "#1F2937";
 
     if (item.present === 1) {
       if (item.attendance) {
-        if (
+        const isAutoCompleted =
           dateStr === today &&
           currentHour >= 23 &&
-          !item.attendance.isCheckout
-        ) {
-          dotColor = "#10B981";
+          !item.attendance.isCheckout;
+
+        if (isAutoCompleted || item.attendance.fullDay) {
+          // Full Day Present (Green)
+          dotColor = brutalistColors.present;
           backgroundColor = "#D1FAE5";
           textColor = "#065F46";
         } else if (!item.attendance.isCheckout) {
-          dotColor = "#F59E0B";
+          // In Progress (Yellow)
+          dotColor = brutalistColors.inProgress;
           backgroundColor = "#FEF3C7";
           textColor = "#92400E";
+        } else if (item.attendance.halfDay) {
+          // Half Day Present (Green)
+          dotColor = brutalistColors.present;
+          backgroundColor = "#D1FAE5";
+          textColor = "#065F46";
         } else {
-          dotColor = "#10B981";
+          // Fallback for any other "Present" state (Green)
+          dotColor = brutalistColors.present;
           backgroundColor = "#D1FAE5";
           textColor = "#065F46";
         }
